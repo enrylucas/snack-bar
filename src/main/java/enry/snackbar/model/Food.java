@@ -34,6 +34,12 @@ public class Food extends BaseEntity {
 
     
     
+    public Food(String name, List<Ingredient> ingredients){
+        this.name = name;
+        this.ingredients = ingredients;
+        this.setPrice();
+    }
+    
     public Integer getId() {
         return id;
     }
@@ -54,12 +60,16 @@ public class Food extends BaseEntity {
         return price;
     }
     
-    public void setPrice() {
+    public void setPrice() { // regras de negócio aqui
         this.price = 0.0f;
+        boolean light = true;
         
         for (Ingredient ingredient : ingredients) {
             this.price += ingredient.getPrice();
+            if(ingredient.getName().equals("Bacon")) light = false;
         }
+        
+        if(light) this.price *= 0.9f;
     }
 
     public List<Ingredient> getIngredients() {
