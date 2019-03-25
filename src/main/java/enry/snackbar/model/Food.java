@@ -1,10 +1,17 @@
 package enry.snackbar.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "foods")
+@JsonIgnoreProperties(
+        value = {"price"},
+        allowGetters = true
+)
 public class Food extends BaseEntity {
     @Id
     @GeneratedValue(generator = "food_generator")
@@ -20,8 +27,13 @@ public class Food extends BaseEntity {
     private String name;
 
     @Column(name="price")
-    private Float price;
+    private Float price = 0.0f;
+    
+    @ManyToMany
+    private List<Ingredient> ingredients = new ArrayList<>();
 
+    
+    
     public Integer getId() {
         return id;
     }
@@ -41,9 +53,21 @@ public class Food extends BaseEntity {
     public Float getPrice() {
         return price;
     }
+    
+    public void setPrice() {
+        this.price = 0.0f;
+        
+        for (Ingredient ingredient : ingredients) {
+            this.price += ingredient.getPrice();
+        }
+    }
 
-    public void setPrice(Float price) {
-        this.price = price;
+    public List<Ingredient> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(List<Ingredient> ingredients) {
+        this.ingredients = ingredients;
     }
 
     

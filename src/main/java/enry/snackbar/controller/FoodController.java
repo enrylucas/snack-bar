@@ -26,6 +26,7 @@ public class FoodController {
 
     @PostMapping("/foods")
     public Food createFood(@Valid @RequestBody Food food) {
+        food.setPrice();
         return foodRepository.save(food);
     }
 
@@ -34,8 +35,10 @@ public class FoodController {
             @Valid @RequestBody Food foodRequest) {
         return foodRepository.findById(foodId)
                 .map(food -> {
-                    food.setName(foodRequest.getName());
-                    food.setPrice(foodRequest.getPrice());
+                    if(foodRequest.getName() != null) food.setName(foodRequest.getName());
+                    if(foodRequest.getIngredients() != null) food.setIngredients(foodRequest.getIngredients());
+                    // price depends on ingredients
+                    food.setPrice();
                     return foodRepository.save(food);
                 });
     }
