@@ -2,9 +2,11 @@ package enry.snackbar.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import lombok.Data;
 
 @Entity
 @Table(name = "ingredients")
+@Data
 public class Ingredient extends BaseEntity {
     
     @Id
@@ -17,28 +19,13 @@ public class Ingredient extends BaseEntity {
     private Integer id;
 
     @NotBlank
-    @Column(name="name")
     private String name;
 
-    @Column(name="price")
     private Float price;
     
-    @Column(name="isMeat")
     private Boolean isMeat;
     
-    @Column(name="isCheese")
     private Boolean isCheese;
-
-    /*@ManyToMany(mappedBy = "ingredients")
-    private List<Food> foods = new ArrayList<>();
-
-    public List<Food> getFoods() {
-        return foods;
-    }
-
-    public void setFoods(List<Food> foods) {
-        this.foods = foods;
-    }*/
     
     public Ingredient() {}
     
@@ -48,47 +35,5 @@ public class Ingredient extends BaseEntity {
         this.isMeat = isMeat;
         this.isCheese = isCheese;
     }
-    
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Float getPrice() {
-        return price;
-    }
-    
-    public void setPrice(Float price) {
-        this.price = price;
-    }
-
-    public Boolean getIsMeat() {
-        return isMeat;
-    }
-
-    public void setIsMeat(Boolean isCarne) {
-        this.isMeat = isCarne;
-    }
-
-    public Boolean getIsCheese() {
-        return isCheese;
-    }
-
-    public void setIsCheese(Boolean isCheese) {
-        this.isCheese = isCheese;
-    }
-    
-    
     
 }

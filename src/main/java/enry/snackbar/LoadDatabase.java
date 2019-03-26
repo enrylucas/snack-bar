@@ -18,41 +18,41 @@ public class LoadDatabase {
     @Bean
     CommandLineRunner initDatabase(IngredientRepository repository, FoodRepository repository2) {
         return args -> {
-            Ingredient alface = new Ingredient("Alface", 0.40f, false, false);
+            Ingredient lettuce = new Ingredient("Alface", 0.40f, false, false);
             Ingredient bacon = new Ingredient("Bacon", 2.00f, false, false);
-            Ingredient hamburguerCarne = new Ingredient("Hamburguer de Carne", 3.00f, true, false);
-            Ingredient ovo = new Ingredient("Ovo", 0.80f, false, false);
-            Ingredient queijo = new Ingredient("Queijo", 1.50f, false, true);
-            log.info("Preloading " + repository.save(alface));
+            Ingredient meatHamburguer = new Ingredient("Hamburguer de Carne", 3.00f, true, false);
+            Ingredient egg = new Ingredient("Ovo", 0.80f, false, false);
+            Ingredient cheese = new Ingredient("Queijo", 1.50f, false, true);
+            log.info("Preloading " + repository.save(lettuce));
             log.info("Preloading " + repository.save(bacon));
-            log.info("Preloading " + repository.save(hamburguerCarne));
-            log.info("Preloading " + repository.save(ovo));
-            log.info("Preloading " + repository.save(queijo));
+            log.info("Preloading " + repository.save(meatHamburguer));
+            log.info("Preloading " + repository.save(egg));
+            log.info("Preloading " + repository.save(cheese));
             
             
-            List<Ingredient> listXBacon = new ArrayList<>();
-            listXBacon.add(bacon);
-            listXBacon.add(hamburguerCarne);
-            listXBacon.add(queijo);
-            log.info("Preloading " + repository2.save(new Food("X-Bacon", listXBacon)));
+            List<Ingredient> ingXBacon = new ArrayList<>();
+            ingXBacon.add(bacon);
+            ingXBacon.add(meatHamburguer);
+            ingXBacon.add(cheese);
+            log.info("Preloading " + repository2.save(new Food("X-Bacon", ingXBacon)));
             
-            List<Ingredient> listXBurguer = new ArrayList<>();
-            listXBurguer.add(hamburguerCarne);
-            listXBurguer.add(queijo);
-            log.info("Preloading " + repository2.save(new Food("X-Burguer", listXBurguer)));
+            List<Ingredient> ingXBurguer = new ArrayList<>();
+            ingXBurguer.add(meatHamburguer);
+            ingXBurguer.add(cheese);
+            log.info("Preloading " + repository2.save(new Food("X-Burguer", ingXBurguer)));
             
-            List<Ingredient> listXEgg = new ArrayList<>();
-            listXEgg.add(ovo);
-            listXEgg.add(hamburguerCarne);
-            listXEgg.add(queijo);
-            log.info("Preloading " + repository2.save(new Food("X-Egg", listXEgg)));
+            List<Ingredient> ingXEgg = new ArrayList<>();
+            ingXEgg.add(egg);
+            ingXEgg.add(meatHamburguer);
+            ingXEgg.add(cheese);
+            log.info("Preloading " + repository2.save(new Food("X-Egg", ingXEgg)));
             
-            List<Ingredient> listXEggBacon = new ArrayList<>();
-            listXEggBacon.add(ovo);
-            listXEggBacon.add(bacon);
-            listXEggBacon.add(hamburguerCarne);
-            listXEggBacon.add(queijo);
-            log.info("Preloading " + repository2.save(new Food("X-Egg Bacon", listXEggBacon)));
+            List<Ingredient> ingXEggBacon = new ArrayList<>();
+            ingXEggBacon.add(egg);
+            ingXEggBacon.add(bacon);
+            ingXEggBacon.add(meatHamburguer);
+            ingXEggBacon.add(cheese);
+            log.info("Preloading " + repository2.save(new Food("X-Egg Bacon", ingXEggBacon)));
             
         };
     }

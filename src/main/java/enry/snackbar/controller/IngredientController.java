@@ -27,10 +27,10 @@ public class IngredientController {
         return ingredientRepository.save(ingredient);
     }
 
-    @PutMapping("/ingredients/{ingredientId}")
-    public Optional<Ingredient> updateIngredient(@PathVariable Integer ingredientId,
+    @PutMapping("/ingredients/{id}")
+    public Optional<Ingredient> updateIngredient(@PathVariable Integer id,
             @Valid @RequestBody Ingredient ingredientRequest) {
-        return ingredientRepository.findById(ingredientId)
+        return ingredientRepository.findById(id)
                 .map(ingredient -> {
                     if(ingredientRequest.getName() != null) ingredient.setName(ingredientRequest.getName());
                     if(ingredientRequest.getPrice() != null) ingredient.setPrice(ingredientRequest.getPrice());
@@ -40,9 +40,9 @@ public class IngredientController {
                 });
     }
 
-    @DeleteMapping("/ingredients/{ingredientId}")
-    public Optional<ResponseEntity<Object>> deleteIngredient(@PathVariable Integer ingredientId) {
-        return ingredientRepository.findById(ingredientId)
+    @DeleteMapping("/ingredients/{id}")
+    public Optional<ResponseEntity<Object>> deleteIngredient(@PathVariable Integer id) {
+        return ingredientRepository.findById(id)
                 .map(ingredient -> {
                     ingredientRepository.delete(ingredient);
                     return ResponseEntity.ok().build();

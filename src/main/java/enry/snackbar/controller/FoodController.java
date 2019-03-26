@@ -27,26 +27,23 @@ public class FoodController {
 
     @PostMapping("/foods")
     public Food createFood(@Valid @RequestBody Food food) {
-        //food.setPrice();
         return foodRepository.save(food);
     }
 
-    @PutMapping("/foods/{foodId}")
-    public Optional<Food> updateFood(@PathVariable Integer foodId,
+    @PutMapping("/foods/{id}")
+    public Optional<Food> updateFood(@PathVariable Integer id,
             @Valid @RequestBody Food foodRequest) {
-        return foodRepository.findById(foodId)
+        return foodRepository.findById(id)
                 .map(food -> {
                     if(foodRequest.getName() != null) food.setName(foodRequest.getName());
                     if(foodRequest.getIngredients() != null) food.setIngredients(foodRequest.getIngredients());
-                    // price depends on ingredients
-                    //food.setPrice();
                     return foodRepository.save(food);
                 });
     }
 
-    @DeleteMapping("/foods/{foodId}")
-    public Optional<ResponseEntity<Object>> deleteFood(@PathVariable Integer foodId) {
-        return foodRepository.findById(foodId)
+    @DeleteMapping("/foods/{id}")
+    public Optional<ResponseEntity<Object>> deleteFood(@PathVariable Integer id) {
+        return foodRepository.findById(id)
                 .map(food -> {
                     foodRepository.delete(food);
                     return ResponseEntity.ok().build();
