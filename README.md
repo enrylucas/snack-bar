@@ -10,6 +10,7 @@ The following dependencies were used during the project generation:
 - Web;
 - JPA;
 - PostgreSQL;
+
 Additionaly, the following dependency was added in the middle of development:
 - Lombok.
 
