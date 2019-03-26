@@ -19,7 +19,7 @@ public class LoadDatabase {
     CommandLineRunner initDatabase(IngredientRepository repository, FoodRepository repository2) {
         return args -> {
             Ingredient alface = new Ingredient("Alface", 0.40f, false, false);
-            Ingredient bacon = new Ingredient("Bacon", 2.00f, true, false);
+            Ingredient bacon = new Ingredient("Bacon", 2.00f, false, false);
             Ingredient hamburguerCarne = new Ingredient("Hamburguer de Carne", 3.00f, true, false);
             Ingredient ovo = new Ingredient("Ovo", 0.80f, false, false);
             Ingredient queijo = new Ingredient("Queijo", 1.50f, false, true);

@@ -8,10 +8,10 @@ import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "foods")
-@JsonIgnoreProperties(
+/*@JsonIgnoreProperties(
         value = {"price"},
         allowGetters = true
-)
+)*/
 public class Food extends BaseEntity {
     @Id
     @GeneratedValue(generator = "food_generator")
@@ -25,19 +25,15 @@ public class Food extends BaseEntity {
     @NotBlank
     @Column(name="name")
     private String name;
-
-    @Column(name="price")
-    private Float price = 0.0f;
     
     @ManyToMany
     private List<Ingredient> ingredients = new ArrayList<>();
 
-    
+    public Food() {}
     
     public Food(String name, List<Ingredient> ingredients){
         this.name = name;
         this.ingredients = ingredients;
-        this.setPrice();
     }
     
     public Integer getId() {
@@ -56,7 +52,7 @@ public class Food extends BaseEntity {
         this.name = name;
     }
 
-    public Float getPrice() {
+    /*public Float getPrice() {
         return price;
     }
     
@@ -70,7 +66,7 @@ public class Food extends BaseEntity {
         }
         
         if(light) this.price *= 0.9f;
-    }
+    }*/
 
     public List<Ingredient> getIngredients() {
         return ingredients;

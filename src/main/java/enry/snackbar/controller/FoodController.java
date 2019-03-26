@@ -19,6 +19,7 @@ public class FoodController {
     @Autowired
     private FoodRepository foodRepository;
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/foods")
     public Page<Food> getFoods(Pageable pageable) {
         return foodRepository.findAll(pageable);
@@ -26,7 +27,7 @@ public class FoodController {
 
     @PostMapping("/foods")
     public Food createFood(@Valid @RequestBody Food food) {
-        food.setPrice();
+        //food.setPrice();
         return foodRepository.save(food);
     }
 
@@ -38,7 +39,7 @@ public class FoodController {
                     if(foodRequest.getName() != null) food.setName(foodRequest.getName());
                     if(foodRequest.getIngredients() != null) food.setIngredients(foodRequest.getIngredients());
                     // price depends on ingredients
-                    food.setPrice();
+                    //food.setPrice();
                     return foodRepository.save(food);
                 });
     }

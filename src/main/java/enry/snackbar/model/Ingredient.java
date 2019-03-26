@@ -40,6 +40,8 @@ public class Ingredient extends BaseEntity {
         this.foods = foods;
     }*/
     
+    public Ingredient() {}
+    
     public Ingredient(String name, Float price, Boolean isMeat, Boolean isCheese){
         this.name = name;
         this.price = price;
