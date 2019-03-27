@@ -19,6 +19,7 @@ public class Ingredient extends BaseEntity {
     private Integer id;
 
     @NotBlank
+    @Column(unique=true)
     private String name;
 
     private Float price;

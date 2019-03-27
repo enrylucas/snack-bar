@@ -20,7 +20,7 @@ public class Food extends BaseEntity {
     private Integer id;
 
     @NotBlank
-    //@Column(name="name")
+    @Column(unique=true)
     private String name;
     
     @ManyToMany
