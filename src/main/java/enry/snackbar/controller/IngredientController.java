@@ -2,11 +2,10 @@ package enry.snackbar.controller;
 
 import enry.snackbar.model.Ingredient;
 import enry.snackbar.repository.IngredientRepository;
+import java.util.List;
 import java.util.Optional;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,10 +15,10 @@ public class IngredientController {
     @Autowired
     private IngredientRepository ingredientRepository;
 
-    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/ingredients")
-    public Page<Ingredient> getIngredients(Pageable pageable) {
-        return ingredientRepository.findAll(pageable);
+    @CrossOrigin(origins = "http://localhost:4200")
+    public List<Ingredient> getIngredients() {
+        return ingredientRepository.findAll();
     }
 
     @PostMapping("/ingredients")

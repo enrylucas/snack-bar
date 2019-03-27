@@ -4,10 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import enry.snackbar.model.Food;
 import enry.snackbar.repository.FoodRepository;
+import java.util.List;
 import java.util.Optional;
 import javax.validation.Valid;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,10 +18,10 @@ public class FoodController {
     @Autowired
     private FoodRepository foodRepository;
 
-    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/foods")
-    public Page<Food> getFoods(Pageable pageable) {
-        return foodRepository.findAll(pageable);
+    @CrossOrigin(origins = "http://localhost:4200")
+    public List<Food> getFoods() {
+        return foodRepository.findAll();
     }
 
     @PostMapping("/foods")

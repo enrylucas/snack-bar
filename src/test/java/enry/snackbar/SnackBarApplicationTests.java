@@ -1,16 +1,43 @@
 package enry.snackbar;
 
+
+import enry.snackbar.controller.IngredientController;
+import enry.snackbar.repository.IngredientRepository;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.RequestBuilder;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
+@RunWith(MockitoJUnitRunner.class)
+//@SpringBootTest
+//@AutoConfigureWebTestClient
 public class SnackBarApplicationTests {
 
+        
+        private MockMvc mvc;
+        
+        @Mock
+        private IngredientRepository ingredientRepository;
+        
+        @InjectMocks
+        private IngredientController ingredientController;
+    
+        @Before
+        public void setUp() {
+            mvc = MockMvcBuilders.standaloneSetup(ingredientController).build();
+        }
+        
 	@Test
-	public void contextLoads() {
+	public void contextLoads() throws Exception {
+            RequestBuilder request = MockMvcRequestBuilders.get("/ingredients");
+            mvc.perform(request).andExpect(status().isOk());
 	}
 
 }
