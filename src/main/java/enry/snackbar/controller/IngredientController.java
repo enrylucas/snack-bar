@@ -51,14 +51,15 @@ public class IngredientController {
                 });
     }
     
-    public Float lightPromo(Float total, List<Ingredient> ingredients){
-        boolean noBacon = true;
-        boolean noLettuce = true;
-        for (Ingredient ingredient : ingredients) {
-            if("Alface".equals(ingredient.getName())) noLettuce = false;
-            if("Bacon".equals(ingredient.getName())) noBacon = false;
+    public Float lightPromo(Float total, List<Ingredient> ingredients, List<Integer> ingredientsQty){
+        boolean hasBacon = false;
+        boolean hasLettuce = false;
+        int size = ingredients.size();
+        for (int i=0;i<size;i++) {
+            if("Alface".equals(ingredients.get(i).getName()) && ingredientsQty.get(i) != 0) hasLettuce = true;
+            if("Bacon".equals(ingredients.get(i).getName()) && ingredientsQty.get(i) != 0) hasBacon = true;
         }
-        if(!noLettuce && noBacon) return total*0.1f;
+        if(hasLettuce && !hasBacon) return total*0.1f;
         else return 0.0f;
     }
     
@@ -110,10 +111,12 @@ public class IngredientController {
         
         //Promos
         if(!realIngredients.isEmpty()){
-            Float discountLight = lightPromo(total, realIngredients);
+            Float discountLight = lightPromo(total, realIngredients, wrapper.ingredientsQty);
             Float discountMeat = moreMeatPromo(realIngredients, wrapper.ingredientsQty);
             Float discountCheese = moreCheesePromo(realIngredients, wrapper.ingredientsQty);
             Float totalDiscount = discountLight + discountMeat + discountCheese;
+            System.out.println(total);
+            System.out.println(discountLight);
             return total - totalDiscount;
         }else return -1f;
         
