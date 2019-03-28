@@ -21,3 +21,7 @@ This project uses a postgreSQL database. It's necessary to create a database cal
 ## Building and Running
 
 To properly run this project, it's necessary to install its maven dependencies. After that, just run its main application SnackBarApplication.java.
+
+## More Info
+
+For more information about this project, please read the snack-bar doc.pdf file.
