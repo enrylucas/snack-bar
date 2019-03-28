@@ -99,25 +99,23 @@ public class IngredientController {
         Float total = 0.0f;
         List<Ingredient> realIngredients = new ArrayList<>(); //Granting updated values
         for(int i=0;i<size;i++){
-            Optional<Ingredient> realIngredient = ingredientRepository.findById(wrapper.ingredientsId.get(i)); //test problem here
-            System.out.println("RealIngredient:");
+            Optional<Ingredient> realIngredient = ingredientRepository.findById(wrapper.ingredientsId.get(i));
             if(realIngredient.isPresent()){
-                System.out.println(realIngredient.get());
                 total += realIngredient.get().getPrice() * wrapper.ingredientsQty.get(i);
                 realIngredients.add(realIngredient.get());
             }
         }
         
-        
         //Promos
         if(!realIngredients.isEmpty()){
-            Float discountLight = lightPromo(total, realIngredients, wrapper.ingredientsQty);
             Float discountMeat = moreMeatPromo(realIngredients, wrapper.ingredientsQty);
             Float discountCheese = moreCheesePromo(realIngredients, wrapper.ingredientsQty);
-            Float totalDiscount = discountLight + discountMeat + discountCheese;
-            System.out.println(total);
-            System.out.println(discountLight);
-            return total - totalDiscount;
+            Float auxDiscount = discountMeat + discountCheese;
+            Float discountLight = lightPromo(total-auxDiscount, realIngredients, wrapper.ingredientsQty);
+            Float totalDiscount = discountLight + auxDiscount;
+            double respaux = (double)(total-totalDiscount);
+            
+            return (float)(Math.floor(respaux*100)/100);
         }else return -1f;
         
         
