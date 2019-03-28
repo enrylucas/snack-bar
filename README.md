@@ -4,6 +4,8 @@ This project was generated with SpringBoot version 2.3.1, through Spring Initial
 All of its development was made through NetBeans IDE version 8.2.
 It was defined to be a Maven project.
 
+The database utilized was PostgreSQL, using the database management tool pgAdmin 4.
+
 ## Dependencies Used
 
 The following dependencies were used during the project generation:
