@@ -18,7 +18,7 @@ Additionaly, the following dependency was added in the middle of development:
 
 ## Setup
 
-This project uses a postgreSQL database. It's necessary to create a database called 'snack-bar' and properly fill the datasource's credentials. This can be done at application.properties file.
+This project uses a postgreSQL database (Download: https://www.postgresql.org/download/). It's necessary to create a database called 'snack-bar' and properly fill the datasource's credentials. This can be done at application.properties file.
 
 ## Building and Running
 
