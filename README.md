@@ -1,7 +1,7 @@
 # snack-bar
 
 This project was generated with SpringBoot version 2.3.1, through Spring Initializr.
-All of its development was made through NetBeans IDE version 8.2.
+All of its development was made through NetBeans IDE version 8.2, using Java SE 1.8.
 It was defined to be a Maven project.
 
 The database utilized was PostgreSQL, using the database management tool pgAdmin 4.
